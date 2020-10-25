@@ -13,7 +13,7 @@
 
 	?>
 	<h2>Agregar Alumnos</h2>
-	<form action="modificar_alumnos" method="POST">
+	<form action="modificar_alumnos.php" method="POST">
 	  <label for="fnombre">Nombre:</label><br>
 	  <input type="text" name="fnombre" value=""><br>
 	  <label for="fapellido_p">Apellido Paterno:</label><br>

@@ -1,4 +1,5 @@
 <?php 
+//NO UTILIZAR ESTE ARCHIVO
 
 	include '../model/connection.php';
 

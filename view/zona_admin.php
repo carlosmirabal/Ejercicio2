@@ -26,7 +26,7 @@
 
 	<?php 
 		// require_once '../controller/session_controller.php';
-		require_once '../model/alumnoDAO.php';
+		// require_once '../model/alumnoDAO.php';
 		if (empty($_POST['filtro_b'])) {
 			$res=new alumnoDAO;
 			echo $res->mostrar();
@@ -41,6 +41,7 @@
 	?>
 	<br>
 	<button><a href="modificar_alumnos.php">Añadir Usuario</a></button>
+	<button><a href="nota_media.php">Nota media</a></button>
 
 
 </body>

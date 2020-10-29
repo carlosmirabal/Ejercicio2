@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2020 a las 15:41:13
+-- Tiempo de generación: 29-10-2020 a las 17:54:18
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -20,11 +20,9 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `bd_destionnotas`
-CREATE DATABASE `bd_destionnotas`;
-use `bd_destionnotas`;
-
 --
-
+CREATE DATABASE bd_gestionnotas;
+USE bd_gestionnotas;
 -- --------------------------------------------------------
 
 --
@@ -67,8 +65,7 @@ CREATE TABLE `tbl_alumno` (
 
 INSERT INTO `tbl_alumno` (`id_alumno`, `nombre`, `apellido_p`, `apellido_m`, `grupo`, `email`, `passwd`) VALUES
 (1, 'Albert', 'Buendía', 'Mojil', 'Bachillerato 1', 'a.buendia@daw.com', '81dc9bdb52d04dc20036dbd8313ed055'),
-(2, 'David', 'Juan', 'Aranda', 'Bachillerato 1', 'd.juan@daw.com', '81dc9bdb52d04dc20036dbd8313ed055'),
-(3, 'Carlos', 'Mirabal', 'Salazar', 'DAW1', 'carlos@daw.com', '827ccb0eea8a706c4c34a16891f84e7b');
+(10, 'David', 'Juan', 'Aranda', 'DAW1', 'david@daw.com', '81dc9bdb52d04dc20036dbd8313ed055');
 
 -- --------------------------------------------------------
 
@@ -80,8 +77,20 @@ CREATE TABLE `tbl_notas` (
   `id_nota` int(5) NOT NULL,
   `nombre_asignatura` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `id_alumno` int(5) NOT NULL,
-  `nota` decimal(2,2) NOT NULL
+  `nota` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_notas`
+--
+
+INSERT INTO `tbl_notas` (`id_nota`, `nombre_asignatura`, `id_alumno`, `nota`) VALUES
+(1, 'Mates', 1, 10),
+(2, 'Programacion', 1, 10),
+(3, 'Fisica', 1, 10),
+(10, 'Mates', 10, 6),
+(11, 'Fisica', 10, 5),
+(12, 'Programacion', 10, 9);
 
 --
 -- Índices para tablas volcadas
@@ -120,13 +129,13 @@ ALTER TABLE `tbl_administrador`
 -- AUTO_INCREMENT de la tabla `tbl_alumno`
 --
 ALTER TABLE `tbl_alumno`
-  MODIFY `id_alumno` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_alumno` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_notas`
 --
 ALTER TABLE `tbl_notas`
-  MODIFY `id_nota` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nota` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas

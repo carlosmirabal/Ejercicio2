@@ -5,6 +5,7 @@
 </head>
 <body>
 	<?php
+		require_once '../controller/session_controller.php';
 		include '../model/alumnoDAO.php';
 		if (isset($_POST['insert'])) {
 			$int=new alumnoDAO;
@@ -28,5 +29,7 @@
 	  <input type="text" name="fpasswd" value=""><br><br>
 	  <input type="submit" value="Enviar" name="insert">
 	</form> 
+
+	<button class="button button2"><a href="zona_admin.php"><h2>Volver</h2></a></button>
 </body>
 </html>

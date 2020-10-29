@@ -1,6 +1,6 @@
 <?php  
 	
-	include './persona.php';
+	require_once 'persona.php';
 	class Alumno extends Persona {
 
 		private $nombre;

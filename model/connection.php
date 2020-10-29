@@ -1,5 +1,5 @@
 <?php 
-include 'config.php';
+require_once 'config.php';
 try {
     $dsn = "mysql:host=".SERVIDOR.";dbname=".BD;
     $pdo = new PDO($dsn, USER, PASSWORD);

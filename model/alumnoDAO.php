@@ -1,6 +1,6 @@
 <?php
 
-	require_once '../model/admin.php';
+	require_once '../model/alumno.php';
 
 	class alumnoDAO {
 		private $pdo;
@@ -21,7 +21,7 @@
 			foreach ($lista_alumnos as $alumno) {
 				$id=$alumno['id_alumno'];
 
-				echo "<tr><td><a href='modificar_alumno.php?id={$id}'>Modificar </a>";
+				echo "<tr><td><a href='update_alu.php?id={$id}'>Modificar </a>"." ";
 				echo "<a href='../view/zona_admin.php?id={$id}'>Eliminar</a></td>";
 				echo "<td>$id</td>";
 				echo "<td>{$alumno['nombre']}</td>";
@@ -37,6 +37,7 @@
 
 		public function insertar(){
 			try {
+				$this->pdo->beginTransaction();
 
 				$sentencia=$this->pdo->prepare("INSERT INTO `tbl_alumno` (`nombre`,`apellido_p`,`apellido_m`,`grupo`,`email`,`passwd`) VALUES (?,?,?,?,?,?)");
 				$nombre=$_POST['fnombre'];
@@ -51,10 +52,26 @@
 				$sentencia->bindParam(4,$grupo);
 				$sentencia->bindParam(5,$email);
 				$sentencia->bindParam(6,$passwd);
-
 				$sentencia->execute();
-				header('Location: ../view/zona_admin.php');
-					
+				
+				$id_alumno=$this->pdo->lastInsertId();
+				$query="INSERT INTO tbl_notas (nombre_asignatura,id_alumno,nota) VALUES ('Mates',?,0)";
+				$result=$this->pdo->prepare($query);
+				$result->bindParam(1,$id_alumno);
+				$result->execute();
+
+				$query2="INSERT INTO tbl_notas (nombre_asignatura,id_alumno,nota) VALUES ('Fisica',?,0)";
+				$result2=$this->pdo->prepare($query2);
+				$result2->bindParam(1,$id_alumno);
+				$result2->execute();
+
+				$query3="INSERT INTO tbl_notas (nombre_asignatura,id_alumno,nota) VALUES ('Programacion',?,0)";
+				$result3=$this->pdo->prepare($query3);
+				$result3->bindParam(1,$id_alumno);
+				$result3->execute();
+				
+				$this->pdo->commit();
+				header('Location: ../view/zona_admin.php');					
 			} catch (Exception $e) {
 					$this->pdo->rollback();
 					echo $ex->getMessage();
@@ -73,7 +90,7 @@
 
 			foreach ($lista_alumnos as $alumno) {
 				$id=$alumno['id_alumno'];
-				echo "<tr><td><a href='modificar_alumno.php?id={$id}'>Modificar </a>";
+				echo "<tr><td><a href='update_alu.php?id={$id}'>Modificar </a>"." ";
 				echo "<a href='../view/zona_admin.php?id={$id}'>Eliminar </a></td>";
 
 				echo "<td>{$id}</td>";
@@ -96,26 +113,39 @@
 				$lista_notas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 				//Si encuentra un resultado eliminará todas las notas relacionadas con el usuario
 				//Además eliminaremos el usuario
-				if ($lista_notas!="") {
+				if ($lista_notas!="") {	
 					$query="DELETE FROM tbl_notas WHERE id_alumno=?";
 					$sentencia=$this->pdo->prepare($query);
 					$sentencia->bindParam(1,$id);
 					$sentencia->execute();
-		
+
+					$query="DELETE FROM tbl_alumno WHERE id_alumno=?";
+					$sentencia=$this->pdo->prepare($query);
+					$sentencia->bindParam(1,$id);
+					$sentencia->execute();
+				}else {
 					$query="DELETE FROM tbl_alumno WHERE id_alumno=?";
 					$sentencia=$this->pdo->prepare($query);
 					$sentencia->bindParam(1,$id);
 					$sentencia->execute();
 				}
 				$this->pdo->commit();
-				header('Location: ../view/zona_admin.php');
+				// header('Location: ../view/zona_admin.php');
 			} catch (Exception $e) {
 				$this->pdo->rollBack();
 				echo $e;
-				header('Location: ../view/zona_admin.php');
+				// header('Location: ../view/zona_admin.php');
 			}
 		}
 
+		public function lecturamodi($id){
+			$query = "SELECT * FROM tbl_alumno WHERE id_alumno=?";
+			$sentencia=$this->pdo->prepare($query);
+			$sentencia->bindParam(1,$id);
+			$sentencia->execute();
+			$alumno=$sentencia->fetch(PDO::FETCH_ASSOC);
+			return $alumno;
+		}
 
 	}
 

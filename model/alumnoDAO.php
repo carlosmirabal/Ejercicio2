@@ -112,7 +112,7 @@
 			} catch (Exception $e) {
 				$this->pdo->rollBack();
 				echo $e;
-				header('Location: ../view/zona_admin.php');
+				
 			}
 		}
 

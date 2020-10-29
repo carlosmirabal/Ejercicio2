@@ -14,17 +14,22 @@
 			$eliminar->eliminar();
 		}
 	?>
-	<h3>Filtro de alumnos</h3>
-	<form action="zona_admin.php" method="POST">
-	  <label for="fnombre">Nombre:</label>
-	  <input type="text" name="fnombre" value="">
-	  <label for="fapellido_p">Apellido Paterno:</label>
-	  <input type="text" name="fapellido_p" value="">
-	  <input type="submit" value="Enviar" name="filtro_b">
-	  <br><br>
-	</form>
+	<div class="form2">
+		<h3>Filtro de alumnos</h3>
+		<form action="zona_admin.php" method="POST">
+		<label for="fnombre">Nombre:</label>
+		<input type="text" name="fnombre" value="">
+		<label for="fapellido_p">Apellido Paterno:</label>
+		<input type="text" name="fapellido_p" value="">
+		<input type="submit" value="Enviar" name="filtro_b">
+		<br><br>
+		</form>
+		<br> <br>
+	</div>
+
 
 	<?php 
+		echo "<br>";
 		// require_once '../controller/session_controller.php';
 		// require_once '../model/alumnoDAO.php';
 		if (empty($_POST['filtro_b'])) {

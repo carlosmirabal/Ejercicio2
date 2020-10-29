@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="../css/styles.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  
   <link href="../css/fontawesome-free-5.15.0-web/css/all.css" rel="stylesheet">
   <script  src="../js/code.js"></script>
 </head>
@@ -22,9 +23,9 @@
         }
 
     ?>
-<h2 style="text-align: center;">Añadir Alumno</h2>
 <div class="row">
-    <div class="form">
+  <div class="form">
+    <h2>Editar Notas</h2>
       <form action="update_alu.php" method="POST" onsubmit="return validacionForm1()">
         <input type="hidden" name='id' value="<?php echo $_GET['id'];?>" ><br>
         <label>Nombre:</label><br>
@@ -49,7 +50,7 @@
         <input type="submit" value="Submit" name="update">
       </form> <br>  
     </div>
-      <button class="button button2"><a href="zona_admin.php"><h2>Volver</h2></a></button>
+    <a href="zona_admin.php"><button class="button button2">Volver</button></a>
 </div>
 
 </body>

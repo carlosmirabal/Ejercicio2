@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="./js/code.js"></script>
+  <script src="./js/code.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
 </head>
 <body>
 
-<h2>Login</h2>
-
-<form action="controller/login_controller.php" method="POST" onsubmit="return validacionForm()">
+  
+  <h2 style="margin-left: 25%;">Login</h2>
+<form class="form" action="controller/login_controller.php" method="POST" onsubmit="return validacionForm()">
   <label for="fmail">Correo:</label><br>
   <input type="text" id="email" name="femail" value=""><br>
   <label for="fpasswd">Password:</label><br>
